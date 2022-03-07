@@ -15,9 +15,8 @@ export let options = {
     },
     thresholds: {
         http_req_duration: ['p(99)<1500'], // 99% of requests must complete below 1.5s
-        'http_req_duration{pagoPaMethod:GetOnlineMerchants}': ['p(95)<1000'], // threshold on API requests only
-        'http_req_duration{pagoPaMethod:GetOfflineMerchants}': ['p(95)<1000'], // threshold on API requests only
-        'http_req_duration{pagoPaMethod:GetMerchant}': ['p(95)<1000'], // threshold on API requests only
+        'http_req_duration{pagoPaMethod:GetMessages}': ['p(95)<1000'], // threshold on API requests only
+        'http_req_duration{pagoPaMethod:GetMessage}': ['p(95)<1000'], // threshold on API requests only
     },
 };
 
