@@ -1,4 +1,4 @@
-# Load tests for CGN project
+# Load tests for IO Messages
 
 This is a set of [k6](https://k6.io) load tests related to the IO Messages.
 
