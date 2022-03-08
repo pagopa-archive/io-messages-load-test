@@ -1,4 +1,4 @@
-import http from 'k6/http';
+import https from 'k6/https';
 
 export default function () {
   // Values from env var.
@@ -12,5 +12,5 @@ export default function () {
       },
   };
   var url = `${urlBasePath}/api/v1/info`;
-  http.get(url, params);
+  https.get(url, params);
 }

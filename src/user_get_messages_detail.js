@@ -1,4 +1,4 @@
-import http from 'k6/http';
+import https from 'k6/https';
 import { sleep } from 'k6';
 import { check } from 'k6';
 import { getRealFiscalCode } from './modules/helpers';
@@ -14,9 +14,9 @@ export let options = {
         }
     },
     thresholds: {
-        http_req_duration: ['p(99)<1500'], // 99% of requests must complete below 1.5s
-        'http_req_duration{pagoPaMethod:GetMessages}': ['p(95)<1000'], // threshold on API requests only
-        'http_req_duration{pagoPaMethod:GetMessage}': ['p(95)<1000'], // threshold on API requests only
+        https_req_duration: ['p(99)<1500'], // 99% of requests must complete below 1.5s
+        'https_req_duration{pagoPaMethod:GetMessages}': ['p(95)<1000'], // threshold on API requests only
+        'https_req_duration{pagoPaMethod:GetMessage}': ['p(95)<1000'], // threshold on API requests only
     },
 };
 
@@ -42,7 +42,7 @@ export default function () {
     });
 
     var messageIds = [];
-    var r = http.get(url, payload, headersParams, {
+    var r = https.get(url, payload, headersParams, {
         tags: tag,
     });
     console.log("Get Users' messages Status " + r.status);
@@ -57,7 +57,7 @@ export default function () {
             pagoPaMethod: "GetMessage",
         };
         url = `${urlBasePath}/api/v1/messages/${fiscalCode}/${messageId}`;
-        r = http.get(url, headersParams, {
+        r = https.get(url, headersParams, {
             tags: tag,
         });
         console.log('Get Message detail: ' + r.status + ' with messageId: ' + messageId);
@@ -75,7 +75,7 @@ export default function () {
         pagoPaMethod: "GetMessage",
     };
     url = `${urlBasePath}/api/v1/api/v1/messages/${fiscalCode}/${randomMessageId}`;
-    r = http.get(url, headersParams, {
+    r = https.get(url, headersParams, {
         tags: tag,
     });
     console.log('Get Message detail: ' + r.status + ' with messageId: ' + randomMessageId);
