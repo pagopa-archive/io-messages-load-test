@@ -31,3 +31,14 @@ This test represents the usage of message list and request for message's detail.
 ```
 $ docker run -i --rm -v $(pwd)/src:/src -e FUNC_BASE_URL=${FUNC_BASE_URL} -e FUNC_KEY=${FUNC_KEY} -e rate=${rate} -e duration=${duration} -e preAllocatedVUs=${preAllocatedVUs} -e maxVUs=${maxVUs} loadimpact/k6 run /src/user_get_messages_paginated_detail.js
 ```
+
+## Large load test
+
+https://k6.io/docs/testing-guides/running-large-tests/
+
+```
+sudo sysctl -w net.ipv4.ip_local_port_range="1024 65535"
+sudo sysctl -w net.ipv4.tcp_tw_reuse=1
+sudo sysctl -w net.ipv4.tcp_timestamps=1
+sudo ulimit -n 250000
+```
