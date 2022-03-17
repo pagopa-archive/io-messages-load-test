@@ -47,6 +47,9 @@ export default function () {
         tags: tag,
     });
     console.log("Get Users' messages Status " + r.status);
+    if (r.status !== 200){
+        console.log(`GetMessages status error is ${r.status}, response ${JSON.parse(r.body)}`)
+    }
     check(r, { 'GetMessages status is 200': (r) => r.status === 200 }, tag);
 
     var resultJsonBody = JSON.parse(r.body);
